@@ -17,15 +17,24 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             display: grid;
             grid-template-columns: 1fr 1fr;
             background: var(--light);
             color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Fix for mobile viewport height */
+        html {
+            height: -webkit-fill-available;
         }
 
         .brand-panel {
@@ -35,6 +44,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            min-height: 100%;
         }
 
         .brand-panel::after {
@@ -46,31 +56,45 @@
             transform: rotate(-15deg);
             right: -180%;
             z-index: 1;
+            transition: transform 0.5s ease;
         }
 
         .logo-container {
             position: relative;
             z-index: 2;
             padding: 2rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
             animation: logoIntro 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            will-change: transform, opacity;
         }
 
         .logo {
-            width: min(80%, 300px);
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
         }
 
         .content-panel {
-            padding: 4rem;
+            padding: clamp(2rem, 5vw, 4rem);
             display: flex;
             flex-direction: column;
             justify-content: center;
             opacity: 0;
+            transform: translateX(50px);
             animation: contentFade 1s 0.5s forwards;
+            will-change: transform, opacity;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--dark);
             margin-bottom: 1.5rem;
             line-height: 1.2;
@@ -79,25 +103,28 @@
 
         .countdown {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
             margin: 3rem 0;
         }
 
         .countdown-item {
             text-align: center;
-            padding: 1.5rem;
+            padding: clamp(1rem, 2vw, 1.5rem);
             background: rgba(242, 170, 128, 0.1);
             border-radius: 12px;
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .countdown-item:hover {
-            transform: translateY(-5px);
+        @media (hover: hover) {
+            .countdown-item:hover {
+                transform: translateY(-5px);
+            }
         }
 
         .countdown-number {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--primary);
             display: block;
@@ -107,116 +134,105 @@
 
         .countdown-label {
             color: var(--dark);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .newsletter {
-            max-width: 500px;
-        }
-
-        .input-group {
-            position: relative;
-            margin: 2rem 0;
-        }
-
-        input[type="email"] {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            padding-right: 140px;
-        }
-
-        input[type="email"]:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(191, 94, 73, 0.2);
-        }
-
-        button {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            bottom: 5px;
-            padding: 0 2rem;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            background: var(--dark);
-            transform: scale(0.98);
         }
 
         .social-links {
             margin-top: 3rem;
             display: flex;
             gap: 1.5rem;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
         }
 
         .social-links a {
             color: var(--primary);
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .social-links a:hover {
-            color: var(--accent);
+        @media (hover: hover) {
+            .social-links a:hover {
+                color: var(--accent);
+                transform: scale(1.1);
+            }
         }
 
         @keyframes logoIntro {
-            from {
+            0% {
                 opacity: 0;
                 transform: translateY(50px);
             }
-            to {
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
         @keyframes contentFade {
-            from {
+            0% {
                 opacity: 0;
                 transform: translateX(50px);
             }
-            to {
+            100% {
                 opacity: 1;
                 transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .brand-panel::after {
+                right: -150%;
             }
         }
 
         @media (max-width: 768px) {
             body {
                 grid-template-columns: 1fr;
+                min-height: 100vh;
             }
             
             .brand-panel {
-                padding: 4rem 2rem;
-                min-height: 50vh;
+                min-height: 40vh;
             }
             
             .brand-panel::after {
-                display: none;
+                transform: rotate(-5deg);
+                right: -120%;
+            }
+            
+            .logo {
+                max-width: 250px;
             }
             
             .content-panel {
-                padding: 2rem;
+                min-height: 60vh;
+            }
+        }
+
+        /* Handle notched phones */
+        @supports (padding: env(safe-area-inset-bottom)) {
+            .content-panel {
+                padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Reduce motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .logo-container,
+            .content-panel,
+            .countdown-item,
+            .social-links a {
+                animation: none;
+                transition: none;
+                transform: none;
             }
             
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .countdown {
-                grid-template-columns: repeat(2, 1fr);
+            .logo-container,
+            .content-panel {
+                opacity: 1;
             }
         }
     </style>
@@ -226,7 +242,7 @@
 <body>
     <div class="brand-panel">
         <div class="logo-container">
-            <img src="./snurm.dev.png" style="height:1200px; width: 1200px;" alt="Your Brand Logo" class="logo">
+            <img src="./snurm.dev.png" alt="Your Brand Logo" class="logo">
         </div>
     </div>
     
@@ -252,11 +268,13 @@
             </div>
         </div>
 
-      
-
         <div class="social-links">
-            <a href="https://github.com/SadikMohamud" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/sadik-mohamud/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/SadikMohamud" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sadik-mohamud/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                <i class="fab fa-linkedin"></i>
+            </a>
         </div>
     </div>
 
@@ -274,19 +292,42 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-            // Update display
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            // Update display with animation only if value changes
+            updateElementIfChanged('days', days);
+            updateElementIfChanged('hours', hours);
+            updateElementIfChanged('minutes', minutes);
+            updateElementIfChanged('seconds', seconds);
     
             // Update title tag
             document.title = `${days}d ${hours}h ${minutes}m ${seconds}s | Launching March 2025`;
         }
+
+        // Helper function to update element only if value changes
+        function updateElementIfChanged(id, value) {
+            const element = document.getElementById(id);
+            const newValue = value.toString().padStart(2, '0');
+            if (element.textContent !== newValue) {
+                element.style.transform = 'scale(1.1)';
+                element.textContent = newValue;
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                }, 100);
+            }
+        }
     
         // Update immediately and then every second
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        const interval = setInterval(updateCountdown, 1000);
+
+        // Cleanup interval on page hide/unload
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(interval);
+            } else {
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
+        });
     </script>
 </body>
 </html>
