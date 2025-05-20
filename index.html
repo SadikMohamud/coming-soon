@@ -1,333 +1,221 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Platform Launching Soon | Your Brand</title>
-    <style>
-        :root {
-            --primary: #076873;
-            --secondary: #F2AA80;
-            --accent: #BF5E49;
-            --light: #F1F2F0;
-            --dark: #73332D;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sadik Mohamud | Front-End VR Architect</title>
+  <style>
+    :root {
+      --primary: #076873;
+      --secondary: #F2AA80;
+      --accent: #BF5E49;
+      --light: #F1F2F0;
+      --dark: #73332D;
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--light);
+  color: var(--dark);
+  overflow-x: hidden;
+}
 
-        body {
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
+html {
+  height: -webkit-fill-available;
+}
 
-        /* Fix for mobile viewport height */
-        html {
-            height: -webkit-fill-available;
-        }
+.brand-panel {
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
 
-        .brand-panel {
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100%;
-        }
+.brand-panel::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: var(--light);
+  transform: rotate(-15deg);
+  right: -180%;
+  z-index: 1;
+}
 
-        .brand-panel::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: var(--light);
-            transform: rotate(-15deg);
-            right: -180%;
-            z-index: 1;
-            transition: transform 0.5s ease;
-        }
+.logo-container {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        .logo-container {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: logoIntro 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-            will-change: transform, opacity;
-        }
+.logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
 
-        .logo {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-        }
+.content-panel {
+  padding: clamp(2rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-        .content-panel {
-            padding: clamp(2rem, 5vw, 4rem);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateX(50px);
-            animation: contentFade 1s 0.5s forwards;
-            will-change: transform, opacity;
-        }
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+}
 
-        h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-        }
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--dark);
+}
 
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: clamp(1rem, 2vw, 1.5rem);
-            margin: 3rem 0;
-        }
+.skills-section {
+  margin-top: 2rem;
+}
 
-        .countdown-item {
-            text-align: center;
-            padding: clamp(1rem, 2vw, 1.5rem);
-            background: rgba(242, 170, 128, 0.1);
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
+.skills-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
 
-        @media (hover: hover) {
-            .countdown-item:hover {
-                transform: translateY(-5px);
-            }
-        }
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
 
-        .countdown-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
+.skills-list span {
+  background: rgba(242, 170, 128, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--dark);
+}
 
-        .countdown-label {
-            color: var(--dark);
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+}
 
-        .social-links {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1.5rem;
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-        }
+form input, form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
 
-        .social-links a {
-            color: var(--primary);
-            transition: color 0.3s ease, transform 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
+form button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-        @media (hover: hover) {
-            .social-links a:hover {
-                color: var(--accent);
-                transform: scale(1.1);
-            }
-        }
+.social-links {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1.75rem;
+}
 
-        @keyframes logoIntro {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.social-links a {
+  color: var(--primary);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 
-        @keyframes contentFade {
-            0% {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .brand-panel::after {
-                right: -150%;
-            }
-        }
+  .brand-panel {
+    min-height: 40vh;
+  }
 
-        @media (max-width: 768px) {
-            body {
-                grid-template-columns: 1fr;
-                min-height: 100vh;
-            }
-            
-            .brand-panel {
-                min-height: 40vh;
-            }
-            
-            .brand-panel::after {
-                transform: rotate(-5deg);
-                right: -120%;
-            }
-            
-            .logo {
-                max-width: 250px;
-            }
-            
-            .content-panel {
-                min-height: 60vh;
-            }
-        }
+  .content-panel {
+    min-height: 60vh;
+  }
+}
 
-        /* Handle notched phones */
-        @supports (padding: env(safe-area-inset-bottom)) {
-            .content-panel {
-                padding-bottom: calc(2rem + env(safe-area-inset-bottom));
-            }
-        }
-
-        /* Reduce motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .logo-container,
-            .content-panel,
-            .countdown-item,
-            .social-links a {
-                animation: none;
-                transition: none;
-                transform: none;
-            }
-            
-            .logo-container,
-            .content-panel {
-                opacity: 1;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="brand-panel">
-        <div class="logo-container">
-            <img src="./snurm.dev.png" alt="Your Brand Logo" class="logo">
-        </div>
+  <div class="brand-panel">
+    <div class="logo-container">
+      <img src="./snurm.dev.png" alt="Sadik Mohamud Logo" class="logo">
     </div>
-    
-    <div class="content-panel">
-        <h1>Transforming Digital Experiences<br>Coming Early 2025</h1>
-        
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Days</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-            </div>
-        </div>
+  </div>  <div class="content-panel">
+    <h1>Sadik Mohamud</h1>
+    <p>I’m a front-end developer turned VR architect based in London. With a strong foundation in HTML, CSS, and JavaScript, I now design and build immersive 3D experiences using A-Frame, Three.js, WebXR, and other web-based VR/AR frameworks. I craft digital environments that are responsive, accessible, and engaging—bridging the gap between traditional web and spatial interfaces.</p><div class="skills-section">
+  <h2>Skills & Technologies</h2>
+  <div class="skills-list">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>Three.js</span>
+    <span>A-Frame</span>
+    <span>WebXR</span>
+    <span>VR</span>
+    <span>AR</span>
+  </div>
+</div>
 
-        <div class="social-links">
-            <a href="https://github.com/SadikMohamud" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/sadik-mohamud/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
-    </div>
+<form action="https://formsubmit.co/snurmdev@gmail.com" method="POST">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://your-portfolio-site.com/thank-you.html">
 
-    <script>
-        // Set launch date to March 28, 2025 00:00:00 GMT
-        const launchDate = new Date('2025-03-28T00:00:00').getTime();
-    
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-    
-            // Calculate time units
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-            // Update display with animation only if value changes
-            updateElementIfChanged('days', days);
-            updateElementIfChanged('hours', hours);
-            updateElementIfChanged('minutes', minutes);
-            updateElementIfChanged('seconds', seconds);
-    
-            // Update title tag
-            document.title = `${days}d ${hours}h ${minutes}m ${seconds}s | Launching March 2025`;
-        }
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required>
 
-        // Helper function to update element only if value changes
-        function updateElementIfChanged(id, value) {
-            const element = document.getElementById(id);
-            const newValue = value.toString().padStart(2, '0');
-            if (element.textContent !== newValue) {
-                element.style.transform = 'scale(1.1)';
-                element.textContent = newValue;
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 100);
-            }
-        }
-    
-        // Update immediately and then every second
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 1000);
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
 
-        // Cleanup interval on page hide/unload
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                clearInterval(interval);
-            } else {
-                updateCountdown();
-                setInterval(updateCountdown, 1000);
-            }
-        });
-    </script>
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+
+  <button type="submit">Send Message</button>
+</form>
+
+<div class="social-links">
+  <a href="https://github.com/SadikMohamud" target="_blank" aria-label="GitHub Profile">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/sadik-mohamud/" target="_blank" aria-label="LinkedIn Profile">
+    <i class="fab fa-linkedin"></i>
+  </a>
+</div>
+
+  </div>
 </body>
 </html>
