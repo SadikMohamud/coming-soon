@@ -2,7 +2,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sadik Mohamud | Front-End & WebXR Developer</title>
+  <title>Sadik Mohamud | Front-End VR Architect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #076873;
@@ -15,20 +17,18 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
 html, body {
   height: 100%;
-  width: 100%;
   overflow-x: hidden;
   background: var(--light);
   color: var(--dark);
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .brand-panel {
@@ -37,7 +37,6 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 40vh;
   overflow: hidden;
 }
 
@@ -55,29 +54,32 @@ body {
 .logo-container {
   position: relative;
   z-index: 2;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  max-width: 300px;
   width: 100%;
-  height: auto;
+  max-width: 300px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
 .content-panel {
-  padding: 2rem;
+  padding: clamp(2rem, 5vw, 4rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 1000px;
-  margin: auto;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  color: var(--dark);
 }
 
 p {
@@ -87,13 +89,13 @@ p {
 }
 
 .skills-section {
-  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 .skills-section h2 {
   font-size: 1.5rem;
-  color: var(--primary);
   margin-bottom: 1rem;
+  color: var(--primary);
 }
 
 .skills-list {
@@ -110,14 +112,14 @@ p {
 }
 
 form {
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 600px;
 }
 
-form input,
-form textarea {
+form input, form textarea {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -143,47 +145,45 @@ form button {
 
 .social-links a {
   color: var(--primary);
-  transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: scale(1.1);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .popup {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--accent);
+  background-color: var(--primary);
   color: #fff;
   padding: 1rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: none;
 }
 
 @media (max-width: 768px) {
-  .skills-list {
-    flex-direction: column;
+  body {
+    grid-template-columns: 1fr;
   }
+
+  .brand-panel {
+    min-height: 40vh;
+  }
+
   .content-panel {
-    padding: 1.5rem;
+    min-height: 60vh;
   }
 }
 
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div class="brand-panel">
     <div class="logo-container">
-      <img src="./snurm.dev.png" alt="Sadik Mohamud Logo" class="logo" />
+      <img src="./snurm.dev.png" alt="Sadik Mohamud Logo" class="logo">
     </div>
   </div>  <div class="content-panel">
     <h1>Sadik Mohamud</h1>
-    <p>I’m a front-end developer turned junior WebXR, WebVR, and WebAR developer based in London. With a solid background in HTML, CSS, and JavaScript, I began my career crafting responsive, user-friendly web interfaces. Over time, I transitioned into immersive development, building interactive 3D environments using A-Frame, Three.js, and other XR technologies. I now focus on creating spatial web experiences that bridge traditional web design with virtual and augmented reality—pushing the boundaries of how users interact with digital spaces.</p><div class="skills-section">
+    <p>I'm a front-end developer turned junior WebXR, WebVR, and WebAR developer based in London. With a solid background in HTML, CSS, and JavaScript, I began my career crafting responsive, user-friendly web interfaces. Over time, I transitioned into immersive development, building interactive 3D environments using A-Frame, Three.js, and other XR technologies. I now focus on creating spatial web experiences that bridge traditional web design with virtual and augmented reality—pushing the boundaries of how users interact with digital spaces.</p><div class="skills-section">
   <h2>Skills & Technologies</h2>
   <div class="skills-list">
     <span>HTML</span>
@@ -199,18 +199,16 @@ form button {
 
 <form id="contact-form">
   <label for="name">Name</label>
-  <input type="text" id="name" name="name" required />
+  <input type="text" id="name" name="name" required>
 
   <label for="email">Email</label>
-  <input type="email" id="email" name="email" required />
+  <input type="email" id="email" name="email" required>
 
   <label for="message">Message</label>
   <textarea id="message" name="message" rows="5" required></textarea>
 
   <button type="submit">Send Message</button>
 </form>
-
-<div class="popup" id="popup">Message sent successfully!</div>
 
 <div class="social-links">
   <a href="https://github.com/SadikMohamud" target="_blank" aria-label="GitHub Profile">
@@ -221,25 +219,25 @@ form button {
   </a>
 </div>
 
-  </div>  <script>
-    document.getElementById("contact-form").addEventListener("submit", function (e) {
+  </div>  <div id="popup" class="popup">Message sent successfully!</div>  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const formData = new FormData(this);
-      fetch("https://formsubmit.co/ajax/snurmdev@gmail.com", {
-        method: "POST",
-        headers: { Accept: "application/json" },
+      await fetch('https://formsubmit.co/ajax/snurmdev@gmail.com', {
+        method: 'POST',
         body: formData,
-      })
-        .then((response) => response.json())
-        .then(() => {
-          document.getElementById("popup").style.display = "block";
-          setTimeout(() => {
-            document.getElementById("popup").style.display = "none";
-          }, 3000);
-          document.getElementById("contact-form").reset();
-        })
-        .catch((error) => alert("Message failed to send."));
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      document.getElementById('popup').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('popup').style.display = 'none';
+      }, 3000);
+
+      this.reset();
     });
   </script></body>
 </html>
