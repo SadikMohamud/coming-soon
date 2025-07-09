@@ -1,268 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Instawear – Get clothes delivered like takeout. A sleek, fast and local fashion delivery service for last-minute plans and everyday life." />
-  <meta name="keywords" content="fashion delivery, instant clothes, local fashion, last-minute outfit, Instawear" />
-  <meta name="author" content="Snurm.dev" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Instawear – Instant Fashion Delivery</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1ee195;
-      --accent: #34d399;
-      --dark-blue: #111828;
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --border-glow: rgba(30, 225, 149, 0.3);
-      --font-color: #f5f5f5;
-      --secondary-text: #ccc;
-    }
+  --primary: #32e3c4; /* Soft aqua/mint */
+  --accent: #ff6f61;  /* Fashion-forward coral */
+  --background: #1a1a1a; /* Charcoal */
+  --dark-bg: #121212;
+  --light-text: #f0f0f0;
+  --gray-text: #cccccc;
+  --border-color: rgba(50, 227, 196, 0.3);
+}* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--dark-bg);
+  color: var(--light-text);
+  padding: 2rem;
+}
 
-    html, body {
-      scroll-behavior: smooth;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f0f10, #121214);
-      color: var(--font-color);
-      overflow-x: hidden;
-    }
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
-    header {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(-45deg, var(--accent), var(--dark-blue), var(--primary), var(--dark-blue));
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.logo img {
+  height: 40px;
+  width: auto;
+}
 
-    .particles {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
 
-    .particles span {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: var(--primary);
-      opacity: 0.05;
-      border-radius: 50%;
-      animation: float 20s linear infinite;
-    }
+.highlight {
+  color: var(--primary);
+}
 
-    .particles span:nth-child(1) { top: 80%; left: 10%; }
-    .particles span:nth-child(2) { top: 70%; left: 30%; }
-    .particles span:nth-child(3) { top: 90%; left: 50%; }
-    .particles span:nth-child(4) { top: 85%; left: 70%; }
+.subtitle {
+  margin: 1rem 0;
+  color: var(--gray-text);
+  font-size: 1rem;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0) scale(0.5); }
-      100% { transform: translateY(-100vh) scale(1); }
-    }
+#typewriter {
+  min-height: 2rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--gray-text);
+}
 
-    .logo-container {
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 2;
-    }
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 2rem 0 3rem;
+  cursor: pointer;
+  background: var(--primary);
+  color: black;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+}
 
-    .logo {
-      height: 50px;
-      width: auto;
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
-    }
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
 
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      z-index: 1;
-    }
+.card {
+  background: #111;
+  border: 1px solid #222;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
 
-    header p {
-      font-size: 1.2rem;
-      color: var(--secondary-text);
-      max-width: 600px;
-      z-index: 1;
-    }
+.card h2 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
 
-    .tagline {
-      font-size: 1.2rem;
-      color: var(--secondary-text);
-      margin-top: 1rem;
-      min-height: 2rem;
-      z-index: 1;
-    }
+.card p, .card ul {
+  color: var(--gray-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 
-    .cta-btn {
-      margin-top: 2rem;
-      background: var(--primary);
-      color: #000;
-      padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      text-decoration: none;
-      z-index: 1;
-      display: inline-block;
-    }
+.card ul {
+  padding-left: 1rem;
+  list-style-type: disc;
+}
 
-    .cta-btn:hover {
-      background: #17c48a;
-      transform: scale(1.05);
-    }
+.card a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
 
-    .container {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #888;
+}
 
-    .glass-card {
-      background: var(--glass-bg);
-      border: 1px solid var(--border-glow);
-      backdrop-filter: blur(20px);
-      border-radius: 16px;
-      padding: 2.5rem;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .glass-card h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--font-color);
-    }
-
-    .glass-card p, .glass-card ul {
-      color: var(--secondary-text);
-      font-size: 1rem;
-    }
-
-    .glass-card ul {
-      list-style: disc;
-      padding-left: 1.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: var(--secondary-text);
-      font-size: 0.9rem;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      header h1 {
-        font-size: 3.5rem;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="particles">
-      <span></span><span></span><span></span><span></span>
+    <div class="logo">
+      <img src="Instrwear-Logo.png" alt="Instawear Logo">
     </div>
-
-    <!-- Logo -->
-    <div class="logo-container">
-      <img src="Instrwear-Logo.png" alt="Instrwear Logo" class="logo" />
+    <div class="title">
+      Fresh fits,<br><span class="highlight">delivered fast</span>
     </div>
-
-    <h1>Instrwear</h1>
-    <p>On-demand fashion. Get clothes delivered in minutes—because sometimes, last-minute plans need first-class style.</p>
-    <p id="typewriter" class="tagline"></p>
-    <a href="https://tally.so/r/mVagRy" class="cta-btn" target="_blank">Founding Member Waitlist</a>
-  </header>
-
-  <!-- SVG divider -->
-  <svg viewBox="0 0 1440 320" style="display: block;">
-    <path fill="#111828" fill-opacity="1" d="M0,224L48,197.3C96,171,192,117,288,106.7C384,96,480,128,576,149.3C672,171,768,181,864,160C960,139,1056,85,1152,85.3C1248,85,1344,139,1392,165.3L1440,192L1440,320L0,320Z"></path>
-  </svg>
-
-  <main class="container">
-    <div class="glass-card">
+    <p class="subtitle">
+      Get the clothes you want in minutes, not days. Instant style, instant satisfaction.
+    </p>
+    <p id="typewriter"></p>
+    <a href="https://tally.so/r/mVagRy" class="btn-primary" target="_blank">
+      ✨ Join the Founding Member Waitlist
+    </a>
+  </header>  <section class="cards">
+    <div class="card">
       <h2>How It Works</h2>
       <ul>
-        <li>Browse curated fashion options based on your location</li>
-        <li>Select your preferred size and fit</li>
-        <li>Confirm your order and delivery address</li>
-        <li>Your outfit arrives at your door in under an hour</li>
+        <li>Browse curated fashion based on location</li>
+        <li>Select your size and preferred style</li>
+        <li>Confirm and get your outfit delivered</li>
+        <li>Enjoy your fresh fit within 5–20 minutes</li>
       </ul>
-    </div>
+    </div><div class="card">
+  <h2>Launching Locations</h2>
+  <ul>
+    <li>London – Brixton</li>
+    <li>London – Clapham</li>
+    <li>London – Kennington</li>
+    <li>London – Stockwell</li>
+    <li>London – Streatham</li>
+    <li>London – Balham</li>
+  </ul>
+</div>
 
-    <div class="glass-card">
-      <h2>Launching Locations</h2>
-      <ul>
-        <li>London – Brixton</li>
-        <li>London – Clapham</li>
-        <li>London – Kennington</li>
-      </ul>
-      <p>Sign up now to get notified when we launch in your area.</p>
-    </div>
+<div class="card">
+  <h2>Need Help?</h2>
+  <p>Are you an investor, partner, or rider? Want to collaborate or offer feedback? <a href="mailto:snurmdev@gmail.com">Contact Snurm.dev</a></p>
+</div>
 
-    <div class="glass-card">
-      <h2>Need Assistance?</h2>
-      <p>If you're a forward-thinking investor, local supplier, or an early user with feedback, contact us directly at 
-        <a href="mailto:snurmdev@gmail.com">snurmdev@gmail.com</a>.
-      </p>
-    </div>
+<div class="card">
+  <h2>Why Instawear?</h2>
+  <p>We combine fashion with convenience. Whether it's a spontaneous event or a professional meeting, Instawear ensures you're ready instantly.</p>
+</div>
 
-    <div class="glass-card">
-      <h2>Why Instawear?</h2>
-      <p>We bridge fashion and speed. No more compromising between quality and convenience. Whether you're heading to a spontaneous event or need a last-minute professional look, Instawear delivers with speed, reliability, and style.</p>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Instawear. Built with precision in London by Snurm.dev.
-  </footer>
-
-  <script>
+  </section>  <footer>
+    &copy; 2025 Snurmdev ©
+  </footer>  <script>
     const phrases = [
       "Clothes delivered in minutes.",
       "Last-minute outfit? Sorted.",
@@ -306,6 +221,5 @@
     }
 
     loop();
-  </script>
-</body>
+  </script></body>
 </html>
